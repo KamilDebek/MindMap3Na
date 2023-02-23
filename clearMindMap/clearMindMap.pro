@@ -12,12 +12,12 @@ SOURCES += \
     custom_view.cpp \
     main.cpp \
     mainwindow.cpp \
-    selectioncolorbutton.cpp
+    nodescolor.cpp
 
 HEADERS += \
     custom_view.h \
     mainwindow.h \
-    selectioncolorbutton.h
+    nodescolor.h
 
 FORMS += \
     mainwindow.ui
