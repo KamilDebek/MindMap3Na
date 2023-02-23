@@ -10,21 +10,12 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QDebug>
 #include <QWheelEvent>
+#include "selectioncolorbutton.h"
 #include <QList>
 #include <QMenu>
 #include <QAction>
-#include<QGraphicsTextItem>
-#include <math.h>
-#include <QPushButton>
-#include "nodescolor.h"
-#include <QGraphicsProxyWidget>
-#include <QTabWidget>
-#include <QGroupBox>
-#include <QLabel>
-#include <QLineEdit>
 #include <QGraphicsLineItem>
-#include <QFormLayout>
-#include "connectnodes.h"
+#include <QGraphicsTextItem>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -36,23 +27,22 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void addNode();
-    void deleteNode();
-    void connectLines();
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);
+
 private slots:
 
-    void on_actionAdd_triggered();
+    void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
 
-    void on_actionDelete_triggered();
-
-    void on_actionConnect_triggered();
+    void on_pushButton_3_clicked();
 
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
+    SelectColorButton *selectColor;
     QGraphicsRectItem *rectItem;
+    QGraphicsRectItem *line;
     QGraphicsRectItem *mainNode;
-    QGraphicsLineItem *line;
 };
 #endif // MAINWINDOW_H
