@@ -24,6 +24,7 @@
 #include <QLineEdit>
 #include <QGraphicsLineItem>
 #include <QFormLayout>
+#include <vector>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -49,6 +50,9 @@ private slots:
     void on_actionConnect_triggered();
 
 private:
+    std::vector <int> linesVector;
+    int lines;
+    QList <QGraphicsLineItem *> linesList;
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QGraphicsRectItem *rectItem;

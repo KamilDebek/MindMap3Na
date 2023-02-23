@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    lines = 0;
     ui->setupUi(this);
     scene = new QGraphicsScene(this);
     QRectF rectOfProxy (0,0,40,20);
@@ -89,12 +90,15 @@ void MainWindow::connectLines()
         scene->addItem(line);
         itemsList[0]->setFlag(QGraphicsItem::ItemIsMovable, false);
         itemsList[1]->setFlag(QGraphicsItem::ItemIsMovable, false);
-        qDebug() << line->line();
-        qDebug() << line->line();
+        lines += 1;
+        qDebug() << line;
+        linesList.push_back(line);
+
     }
 }
 void MainWindow::deleteNode()
 {
+    QGraphicsLineItem *newLine = 0;
     if(scene->items().count() != 0)
     {
         if (scene->selectedItems().count() > 0)
@@ -110,8 +114,24 @@ void MainWindow::deleteNode()
 
                 else
                 {
+                    for (int l = 0; l < linesList.count(); l++)
+                    {
+                        if (linesList[l]->type() == 6)
+                        {
+                            newLine = linesList[l];
+                            if (newLine->line().p1() == itemsList[x]->pos() || newLine->line().p2() == itemsList[x]->pos())
+                            {
+                                delete linesList[l];
+                                lines-=1;
+                                qDebug() << lines;
+                                linesList.removeAt(l);
+                            }
+
+                        }
+                    }
                     delete itemsList[x];
                 }
+
 
 
             }
