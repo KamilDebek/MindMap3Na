@@ -51,12 +51,13 @@ private slots:
 
 private:
     std::vector <int> linesVector;
-    int lines;
+    int lines = 0;
     QList <QGraphicsLineItem *> linesList;
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QGraphicsRectItem *rectItem;
     QGraphicsRectItem *mainNode;
     QGraphicsLineItem *line;
+
 };
 #endif // MAINWINDOW_H

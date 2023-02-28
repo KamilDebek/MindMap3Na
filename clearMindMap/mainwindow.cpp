@@ -91,50 +91,40 @@ void MainWindow::connectLines()
         itemsList[0]->setFlag(QGraphicsItem::ItemIsMovable, false);
         itemsList[1]->setFlag(QGraphicsItem::ItemIsMovable, false);
         lines += 1;
-        qDebug() << line;
         linesList.push_back(line);
 
     }
 }
 void MainWindow::deleteNode()
 {
-    QGraphicsLineItem *newLine = 0;
     if(scene->items().count() != 0)
     {
         if (scene->selectedItems().count() > 0)
         {
             QList <QGraphicsItem *> itemsList = scene->selectedItems();
+            QGraphicsLineItem *newLine;
             for(int x = 0; x < itemsList.count(); x++)
             {
-                if (itemsList[x] == mainNode)
+                if (itemsList[x] != mainNode)
                 {
-
-                }
-
-
-                else
-                {
-                    for (int l = 0; l < linesList.count(); l++)
+                    for (int l = 0; l < lines - 1; l++)
                     {
-                        if (linesList[l]->type() == 6)
-                        {
-                            newLine = linesList[l];
-                            if (newLine->line().p1() == itemsList[x]->pos() || newLine->line().p2() == itemsList[x]->pos())
-                            {
-                                delete linesList[l];
-                                lines-=1;
-                                qDebug() << lines;
-                                linesList.removeAt(l);
-                            }
+                        newLine = linesList[l];
 
+                        if (newLine->line().p1() == itemsList[x]->pos() || newLine->line().p2() == itemsList[x]->pos())
+                        {
+
+                            delete linesList[l];
+                            lines -= 1;
+                            qDebug() << lines;
+                            linesList.removeAt(l);
                         }
+
+
                     }
                     delete itemsList[x];
                 }
-
-
-
-            }
+             }
 
 
 
