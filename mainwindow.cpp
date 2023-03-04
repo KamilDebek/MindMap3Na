@@ -8,31 +8,10 @@ MainWindow::MainWindow(QWidget *parent)
     lines = 0;
     ui->setupUi(this);
     scene = new QGraphicsScene(this);
-    QRectF rectOfProxy (0,0,40,20);
     ui->graphicsView->setScene(scene);
-    QPen mainNodeBorderPen(Qt::black);
-    mainNodeBorderPen.setWidth(2);
-    QBrush redBrush(Qt::red);
-    mainNode = scene->addRect(0,0,200,100,mainNodeBorderPen,redBrush);
-    mainNode->setFlag(QGraphicsRectItem::ItemIsSelectable);
-    mainNode->setZValue(10);
-    nodesColor *nodeColor = new nodesColor(scene, mainNode);
-    nodeColor->setStyleSheet("background-color: rgba(255, 255, 255, 30); font-size: 10px;");
-    nodeColor->setText("Change Color");
-    QGraphicsProxyWidget *colorProxy = new QGraphicsProxyWidget;
-    colorProxy->setWidget(nodeColor);
-    scene->addItem(colorProxy);
-    colorProxy->setZValue(25);
-    colorProxy->setParentItem(mainNode);
-    colorProxy->setGeometry(rectOfProxy);
-    colorProxy->setPos(125,0);
-    QLineEdit *text = new QLineEdit;
-    text->setStyleSheet("background-color: rgba(255, 255, 255, 30); border: 1px solid black; border-radius: 5px;");
-    QGraphicsProxyWidget *lineEditProxy = new QGraphicsProxyWidget;
-    lineEditProxy->setWidget(text);
-    lineEditProxy->setParentItem(mainNode);
-    lineEditProxy->setPos(0,45);
-    text->setAlignment(Qt::AlignCenter);
+
+    // Creating first node by function, not like before
+    addNode();
 }
 
 MainWindow::~MainWindow()
@@ -42,7 +21,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::addNode()
 {
-
+    QGraphicsRectItem *rectItem;
     QRectF rectOfProxy (0,0,40,20);
     QPen borderPen(Qt::black);
     borderPen.setWidth(2);

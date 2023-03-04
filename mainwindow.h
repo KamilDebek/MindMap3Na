@@ -13,10 +13,9 @@
 #include <QList>
 #include <QMenu>
 #include <QAction>
-#include<QGraphicsTextItem>
+#include <QGraphicsTextItem>
 #include <math.h>
 #include <QPushButton>
-#include "nodescolor.h"
 #include <QGraphicsProxyWidget>
 #include <QTabWidget>
 #include <QGroupBox>
@@ -26,10 +25,13 @@
 #include <QFormLayout>
 #include <vector>
 
+#include "nodescolor.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 class SelectColorButton;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -43,10 +45,7 @@ public:
 private slots:
 
     void on_actionAdd_triggered();
-
-
     void on_actionDelete_triggered();
-
     void on_actionConnect_triggered();
 
 private:
@@ -55,7 +54,8 @@ private:
     QList <QGraphicsLineItem *> linesList;
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
-    QGraphicsRectItem *rectItem;
+    //QGraphicsRectItem *rectItem; Moved to addNode function because
+    // there is unnecessary
     QGraphicsRectItem *mainNode;
     QGraphicsLineItem *line;
 

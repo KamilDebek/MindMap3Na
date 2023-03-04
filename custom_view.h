@@ -4,22 +4,21 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QWheelEvent>
-#include <QKeyEvent>
-#include <mainwindow.h>
+
 class Custom_View: public QGraphicsView
 {
 public:
     explicit Custom_View(QWidget *parent = nullptr);
     qreal panSpeed;
     qreal zoomDelta;
-    void pan(QPointF delta);
+    //void pan(QPointF delta);
     void zoom(float scaleFactor);
     void zoomIn();
     void zoomOut();
 protected:
     void showCustomMenu(const QPoint &pos);
     virtual void wheelEvent(QWheelEvent *event) override;
-    using QGraphicsView::QGraphicsView;
+    //using QGraphicsView::QGraphicsView;
 private:
     qreal _scale;
     bool _doMousePanning;
