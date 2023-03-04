@@ -126,6 +126,5 @@ void MainWindow::on_actionDelete_triggered()
 void MainWindow::on_actionConnect_triggered()
 {
     connectLines();
-
 }
 

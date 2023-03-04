@@ -54,7 +54,7 @@ private:
     QList <QGraphicsLineItem *> linesList;
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
-    //QGraphicsRectItem *rectItem; Moved to addNode function because
+    //QGraphicsRectItem *rectItem; Moved to addNode() function because
     // there is unnecessary
     QGraphicsRectItem *mainNode;
     QGraphicsLineItem *line;
