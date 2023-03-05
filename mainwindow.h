@@ -34,7 +34,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void addNode();
-    void deleteNode();
+    void deleteNode(QList <QGraphicsItem *> itemsList);
     void connectLines();
 private slots:
 
@@ -52,6 +52,8 @@ private:
     //QGraphicsRectItem *rectItem; Moved to addNode() function because
     // there is unnecessary
     QGraphicsLineItem *line;
+
+    QList<SquareNode*> graphicsItemToSquareNode(QList <QGraphicsItem *> itemsList);
 
 };
 #endif // MAINWINDOW_H
