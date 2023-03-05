@@ -7,6 +7,7 @@
 #include <QList>
 #include <QGraphicsLineItem>
 #include <QLineF>
+#include <QFileDialog>
 #include <QFile>
 #include <QtAlgorithms>
 

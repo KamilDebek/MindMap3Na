@@ -92,9 +92,9 @@ void MainWindow::on_actionConnect_triggered()
 
 void MainWindow::saveToFile()
 {
-    QString fileName = "jam.txt";
+    QString fileName = QFileDialog::getExistingDirectory (this, tr("Open Directory"));
 
-    QFile saveFile(fileName);
+    QFile saveFile(fileName + "/jam.txt");
     if(saveFile.open(QIODevice::WriteOnly))
     {
         QTextStream outStream(&saveFile);
