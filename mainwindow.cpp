@@ -21,12 +21,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::addNode()
 {
-    QGraphicsRectItem *rectItem;
-    QRectF rectOfProxy (0,0,40,20);
+    /*QRectF rectOfProxy (0,0,40,20);
     QPen borderPen(Qt::black);
     borderPen.setWidth(2);
     QBrush blueBrush(Qt::blue);
-    rectItem = scene->addRect(0,0,200,100,borderPen,blueBrush);
+    QGraphicsRectItem *rectItem = new QGraphicsRectItem(0,0,200,100);
+    rectItem->setPen(borderPen);
+    rectItem->setBrush(blueBrush);
+    scene->addItem(rectItem);
     rectItem->setFlag(QGraphicsRectItem::ItemIsMovable);
     rectItem->setFlag(QGraphicsRectItem::ItemIsSelectable);
     rectItem->setZValue(10);
@@ -48,7 +50,9 @@ void MainWindow::addNode()
     lineEditProxy->setPos(0,30);
     lineEditProxy->setPreferredSize(180,30);
     lineEditProxy->setContentsMargins(10,0,10,0);
-    text->setAlignment(Qt::AlignCenter);
+    text->setAlignment(Qt::AlignCenter);*/
+    SquareNode *xd = new SquareNode;
+    scene->addItem(xd);
 }
 
 

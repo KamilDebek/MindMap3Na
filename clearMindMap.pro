@@ -12,12 +12,14 @@ SOURCES += \
     custom_view.cpp \
     main.cpp \
     mainwindow.cpp \
-    nodescolor.cpp
+    nodescolor.cpp \
+    squarenode.cpp
 
 HEADERS += \
     custom_view.h \
     mainwindow.h \
-    nodescolor.h
+    nodescolor.h \
+    squarenode.h
 
 FORMS += \
     mainwindow.ui

@@ -14,10 +14,8 @@
 #include <QMenu>
 #include <QAction>
 #include <QGraphicsTextItem>
-#include <math.h>
 #include <QPushButton>
 #include <QGraphicsProxyWidget>
-#include <QTabWidget>
 #include <QGroupBox>
 #include <QLabel>
 #include <QLineEdit>
@@ -26,6 +24,7 @@
 #include <vector>
 
 #include "nodescolor.h"
+#include "squarenode.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

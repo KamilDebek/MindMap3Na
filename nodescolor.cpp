@@ -1,10 +1,10 @@
 #include "nodescolor.h"
 
 #include <QColorDialog>
-nodesColor::nodesColor(QGraphicsScene* scene, QGraphicsRectItem *parent)
+nodesColor::nodesColor(QGraphicsRectItem *parent)
 {   
     connect( this, SIGNAL(clicked()), this, SLOT(changeNodeColor()) );
-    mainScene = scene;
+    //mainScene = scene;
     backgroundBrush.setColor(QColor(255,241,220));
     node = parent;
 }
