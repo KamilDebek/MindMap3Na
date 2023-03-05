@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QtCore>
+#include <QDebug>
 #include <QtGui>
 #include <QKeyEvent>
 #include <QDebug>
@@ -35,6 +36,7 @@ public:
     ~MainWindow();
     void addNode();
     void deleteNode(QList <QGraphicsItem *> itemsList);
+    void deleteLines(QList<QGraphicsLineItem*> lines);
     void connectLines();
 private slots:
 
@@ -43,15 +45,14 @@ private slots:
     void on_actionConnect_triggered();
 
 private:
-    std::vector <int> linesVector;
-    int lines = 0;
-    QList <QGraphicsLineItem *> linesList;
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QList <SquareNode *> squaresList;
+    QList <QGraphicsLineItem *> linesList;
     //QGraphicsRectItem *rectItem; Moved to addNode() function because
     // there is unnecessary
-    QGraphicsLineItem *line;
+    //QGraphicsLineItem *line; Moved to addNode() function because
+    // there is unnecessary
 
     QList<SquareNode*> graphicsItemToSquareNode(QList <QGraphicsItem *> itemsList);
 

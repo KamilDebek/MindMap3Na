@@ -17,10 +17,10 @@ class SquareNode : public QGraphicsRectItem
 public:
     SquareNode();
     ~SquareNode();
-
+    QList<QGraphicsLineItem*> lines;
     void addLine(QGraphicsLineItem* line);
 private:
-    QList<QGraphicsLineItem*> lines;
+
 };
 
 #endif // SQUARENODE_H

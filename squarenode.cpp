@@ -38,7 +38,10 @@ SquareNode::~SquareNode()
 {
     for(int i = 0; i < lines.count(); i++)
         if(lines[i] != nullptr)
-            delete lines[i];
+        {
+            //delete lines[i];
+            //lines[i] = nullptr;
+        }
 }
 
 void SquareNode::addLine(QGraphicsLineItem *line)

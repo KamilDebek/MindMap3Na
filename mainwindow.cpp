@@ -5,7 +5,6 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    lines = 0;
     ui->setupUi(this);
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
@@ -31,21 +30,23 @@ void MainWindow::connectLines()
 {
     if (scene->selectedItems().count() == 2)
     {
-        QList <QGraphicsItem *> itemsList = scene->selectedItems();
+        QList <SquareNode *> itemsList = graphicsItemToSquareNode(scene->selectedItems());
         QPen linePen(Qt::black);
         linePen.setWidth(3);
+
         int startPosX = itemsList[0]->x();
         int startPosY = itemsList[0]->y();
         int endPosX = itemsList[1]->x();
         int endPosY = itemsList[1]->y();
-        line = new QGraphicsLineItem(startPosX,startPosY,endPosX,endPosY);
+
+        QGraphicsLineItem *line = new QGraphicsLineItem(startPosX,startPosY,endPosX,endPosY);
+        itemsList[0]->addLine(line);
+        itemsList[1]->addLine(line);
+        linesList.push_back(line);
         line->setPen(linePen);
         scene->addItem(line);
         itemsList[0]->setFlag(QGraphicsItem::ItemIsMovable, false);
         itemsList[1]->setFlag(QGraphicsItem::ItemIsMovable, false);
-        lines += 1;
-        linesList.push_back(line);
-
     }
 }
 
@@ -57,12 +58,27 @@ void MainWindow::deleteNode(QList <QGraphicsItem *> itemsList)
         {
             if(itemsList[i] == squaresList[it])
             {
+                deleteLines(squaresList[it]->lines);
                 delete squaresList[it];
                 squaresList.removeAt(it);
             }
         }
     }
+}
 
+void MainWindow::deleteLines(QList<QGraphicsLineItem *> lines)
+{
+    for(int i = 0; i < lines.count(); i++)
+    {
+        QGraphicsLineItem *line = lines[i];
+        if(linesList.contains(line))
+        {
+            qDebug() << "contains";
+            int lIndex = linesList.indexOf(line);
+            delete linesList[lIndex];
+            linesList.removeAt(lIndex);
+        }
+    }
 }
 
 
