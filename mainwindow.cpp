@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->actionSave, &QAction::triggered, this, &MainWindow::saveToFile); // Connecting save action tp saveToFileFunction()
     connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::openFromFile); // Connecting save action tp openFromFile()
-
+    connect(ui->graphicsView->scene(), &QGraphicsScene::changed, this, &MainWindow::refreshLines);
     // Creating first node by function, not like before
     addNode();
 }
@@ -36,8 +36,8 @@ void MainWindow::connectLines()
         QList <SquareNode *> itemsList = graphicsItemToSquareNode(scene->selectedItems());
         ConnectLine *line = new ConnectLine(itemsList[0], itemsList[1]);
 
-        itemsList[0]->setFlag(QGraphicsItem::ItemIsMovable, false);
-        itemsList[1]->setFlag(QGraphicsItem::ItemIsMovable, false);
+        //itemsList[0]->setFlag(QGraphicsItem::ItemIsMovable, false);
+        //itemsList[1]->setFlag(QGraphicsItem::ItemIsMovable, false);
         linesList.push_back(line);
 
         scene->addItem(line);
@@ -146,8 +146,8 @@ void MainWindow::openFromFile()
             {
                 ConnectLine *line = new ConnectLine(squaresList[args[1].toInt()], squaresList[args[2].toInt()]);
 
-                squaresList[args[1].toInt()]->setFlag(QGraphicsItem::ItemIsMovable, false);
-                squaresList[args[2].toInt()]->setFlag(QGraphicsItem::ItemIsMovable, false);
+                //squaresList[args[1].toInt()]->setFlag(QGraphicsItem::ItemIsMovable, false);
+                //squaresList[args[2].toInt()]->setFlag(QGraphicsItem::ItemIsMovable, false);
                 linesList.push_back(line);
 
                 scene->addItem(line);
@@ -175,5 +175,13 @@ QList<SquareNode *> MainWindow::graphicsItemToSquareNode(QList<QGraphicsItem *> 
     }
 
     return nodes;
+}
+
+void MainWindow::refreshLines()
+{
+    for(int i = 0; i < linesList.count(); i++)
+    {
+        linesList[i]->refresh();
+    }
 }
 

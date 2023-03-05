@@ -13,9 +13,10 @@ public:
 
     SquareNode *firstNode;
     SquareNode *secondNode;
-
+    void refresh();
 private:
     void deleteLine();
+
 };
 
 #endif // CONNECTLINE_H

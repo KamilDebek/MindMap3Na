@@ -7,6 +7,7 @@
 
 class Custom_View: public QGraphicsView
 {
+    Q_OBJECT
 public:
     explicit Custom_View(QWidget *parent = nullptr);
     qreal panSpeed;

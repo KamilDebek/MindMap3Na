@@ -47,6 +47,6 @@ private:
     QList <ConnectLine *> linesList;
 
     QList<SquareNode*> graphicsItemToSquareNode(QList <QGraphicsItem *> itemsList);
-
+    void refreshLines();
 };
 #endif // MAINWINDOW_H

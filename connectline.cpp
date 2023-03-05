@@ -17,3 +17,8 @@ void ConnectLine::deleteLine()
 {
     delete this;
 }
+
+void ConnectLine::refresh()
+{
+    this->setLine(QLineF(firstNode->pos(), secondNode->pos()));
+}
