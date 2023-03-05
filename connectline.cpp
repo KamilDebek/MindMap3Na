@@ -1,7 +1,7 @@
 #include "connectline.h"
 
 ConnectLine::ConnectLine(SquareNode *fNode,SquareNode *sNode)
-    : QGraphicsLineItem(QLineF(fNode->pos(), sNode->pos()))
+    : QGraphicsLineItem(QLineF(fNode->pos() + fNode->rect().center(), sNode->pos() + sNode->rect().center()))
 {
     firstNode = fNode;
     secondNode = sNode;
@@ -20,5 +20,5 @@ void ConnectLine::deleteLine()
 
 void ConnectLine::refresh()
 {
-    this->setLine(QLineF(firstNode->pos(), secondNode->pos()));
+    this->setLine(QLineF(firstNode->pos() + firstNode->rect().center(), secondNode->pos() + secondNode->rect().center()));
 }
