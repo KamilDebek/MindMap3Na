@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    connectline.cpp \
     custom_view.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -16,6 +17,7 @@ SOURCES += \
     squarenode.cpp
 
 HEADERS += \
+    connectline.h \
     custom_view.h \
     mainwindow.h \
     nodescolor.h \

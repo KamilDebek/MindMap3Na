@@ -15,13 +15,13 @@
 
 class SquareNode : public QGraphicsRectItem
 {
+
 public:
     SquareNode(qreal posX = 0, qreal posY = 0, QColor color = Qt::blue);
     ~SquareNode();
 
-    QList<QGraphicsLineItem*> lines;
-    void addLine(QGraphicsLineItem* line);
-private:
+    //QList<ConnectLine*> lines;
+    //void addLine(ConnectLine* line);
 };
 
 #endif // SQUARENODE_H

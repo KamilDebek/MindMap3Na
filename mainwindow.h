@@ -12,6 +12,7 @@
 
 #include "nodescolor.h"
 #include "squarenode.h"
+#include "connectline.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -28,7 +29,7 @@ public:
 
     void addNode();
     void deleteNode(QList <QGraphicsItem *> itemsList);
-    void deleteLines(QList<QGraphicsLineItem*> lines);
+    void deleteLines(SquareNode * node);
     void connectLines();
 
 private slots:
@@ -43,7 +44,7 @@ private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QList <SquareNode *> squaresList;
-    QList <QGraphicsLineItem *> linesList;
+    QList <ConnectLine *> linesList;
 
     QList<SquareNode*> graphicsItemToSquareNode(QList <QGraphicsItem *> itemsList);
 

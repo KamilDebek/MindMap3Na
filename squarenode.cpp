@@ -33,9 +33,9 @@ SquareNode::SquareNode(qreal posX, qreal posY, QColor color)
     text->setAlignment(Qt::AlignCenter);
 }
 
-SquareNode::~SquareNode(){}
+SquareNode::~SquareNode() {}
 
-void SquareNode::addLine(QGraphicsLineItem *line)
-{
-    lines.push_back(line);
-}
+//void SquareNode::addLine(ConnectLine *line)
+//{
+//    lines.push_back(line);
+//}

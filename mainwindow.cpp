@@ -34,16 +34,9 @@ void MainWindow::connectLines()
     if (scene->selectedItems().count() == 2)
     {
         QList <SquareNode *> itemsList = graphicsItemToSquareNode(scene->selectedItems());
-        qDebug() << itemsList[0]->pos();
-        qDebug() << itemsList[1]->pos();
-        QGraphicsLineItem *line = new QGraphicsLineItem(QLineF(itemsList[0]->pos(),itemsList[1]->pos()));
-        QPen linePen(Qt::black);
-        linePen.setWidth(3);
-        line->setPen(linePen);
+        ConnectLine *line = new ConnectLine(itemsList[0], itemsList[1]);
 
-        itemsList[0]->addLine(line);
         itemsList[0]->setFlag(QGraphicsItem::ItemIsMovable, false);
-        itemsList[1]->addLine(line);
         itemsList[1]->setFlag(QGraphicsItem::ItemIsMovable, false);
         linesList.push_back(line);
 
@@ -59,7 +52,7 @@ void MainWindow::deleteNode(QList <QGraphicsItem *> itemsList)
         {
             if(itemsList[i] == squaresList[it])
             {
-                deleteLines(squaresList[it]->lines);
+                deleteLines(squaresList[it]);
                 delete squaresList[it];
                 squaresList.removeAt(it);
             }
@@ -67,19 +60,28 @@ void MainWindow::deleteNode(QList <QGraphicsItem *> itemsList)
     }
 }
 
-void MainWindow::deleteLines(QList<QGraphicsLineItem *> lines)
+void MainWindow::deleteLines(SquareNode * node)
 {
-    for(int i = 0; i < lines.count(); i++)
+    QList <ConnectLine *> tmpList = linesList;
+    for(int i = 0; i < linesList.count(); i++)
     {
-        QGraphicsLineItem *line = lines[i];
-        if(linesList.contains(line))
+        if(linesList[i] != nullptr && (node == linesList[i]->firstNode || node == linesList[i]->secondNode))
         {
-            qDebug() << "contains";
-            int lIndex = linesList.indexOf(line);
-            delete linesList[lIndex];
-            linesList.removeAt(lIndex);
+            delete linesList[i];
+            linesList[i] = nullptr;
+            linesList.removeAt(i);
+            i = -1;
         }
     }
+
+    //for(int i = 0; i < linesList.count(); i++)
+    //{
+    //    if(linesList[i] == nullptr)
+    //    {
+    //        linesList.removeAt(i);
+    //        i = 0;
+    //    }
+    //}
 }
 
 
