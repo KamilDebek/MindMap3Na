@@ -53,6 +53,7 @@ void MainWindow::addNode()
     text->setAlignment(Qt::AlignCenter);*/
     SquareNode *xd = new SquareNode;
     scene->addItem(xd);
+    squaresList.push_back(xd);
 }
 
 
@@ -82,37 +83,21 @@ void MainWindow::deleteNode()
 {
     if(scene->items().count() != 0)
     {
-        if (scene->selectedItems().count() > 0)
+        QList <QGraphicsItem *> itemsList = scene->selectedItems();
+        QGraphicsLineItem *newLine;
+
+        for(int i = 0; i < itemsList.count(); i++)
         {
-            QList <QGraphicsItem *> itemsList = scene->selectedItems();
-            QGraphicsLineItem *newLine;
-            for(int x = 0; x < itemsList.count(); x++)
+            for(int it = 0; it < squaresList.count(); it++)
             {
-                if (itemsList[x] != mainNode)
+                if(itemsList[i] == squaresList[it])
                 {
-                    for (int l = 0; l < lines - 1; l++)
-                    {
-                        newLine = linesList[l];
-
-                        if (newLine->line().p1() == itemsList[x]->pos() || newLine->line().p2() == itemsList[x]->pos())
-                        {
-
-                            delete linesList[l];
-                            lines -= 1;
-                            qDebug() << lines;
-                            linesList.removeAt(l);
-                        }
-
-
-                    }
-                    delete itemsList[x];
+                    delete squaresList[it];
+                    //delete itemsList[it];
+                    squaresList.removeAt(it);
                 }
-             }
-
-
-
+            }
         }
-
     }
 }
 void MainWindow::on_actionAdd_triggered()

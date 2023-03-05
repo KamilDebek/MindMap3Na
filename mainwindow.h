@@ -5,23 +5,18 @@
 #include <QGraphicsScene>
 #include <QtCore>
 #include <QtGui>
-#include <QGraphicsRectItem>
 #include <QKeyEvent>
-#include <QGraphicsSceneMouseEvent>
 #include <QDebug>
 #include <QWheelEvent>
 #include <QList>
 #include <QMenu>
 #include <QAction>
-#include <QGraphicsTextItem>
 #include <QPushButton>
-#include <QGraphicsProxyWidget>
 #include <QGroupBox>
 #include <QLabel>
 #include <QLineEdit>
 #include <QGraphicsLineItem>
 #include <QFormLayout>
-#include <vector>
 
 #include "nodescolor.h"
 #include "squarenode.h"
@@ -53,9 +48,9 @@ private:
     QList <QGraphicsLineItem *> linesList;
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
+    QList <SquareNode *> squaresList;
     //QGraphicsRectItem *rectItem; Moved to addNode() function because
     // there is unnecessary
-    QGraphicsRectItem *mainNode;
     QGraphicsLineItem *line;
 
 };

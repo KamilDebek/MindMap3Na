@@ -8,6 +8,7 @@ SquareNode::SquareNode()
     borderPen.setWidth(2);
     QBrush blueBrush(Qt::blue);
     //QGraphicsRectItem *this = new QGraphicsRectItem(0,0,200,100);
+    //this->setParentItem(this);
     this->setPen(borderPen);
     this->setBrush(blueBrush);
     //scene->addItem(this);
@@ -33,4 +34,9 @@ SquareNode::SquareNode()
     lineEditProxy->setPreferredSize(180,30);
     lineEditProxy->setContentsMargins(10,0,10,0);
     text->setAlignment(Qt::AlignCenter);
+}
+
+SquareNode::~SquareNode()
+{
+    qDebug() << "delete";
 }
