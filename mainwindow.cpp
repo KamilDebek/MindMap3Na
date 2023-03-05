@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionSave, &QAction::triggered, this, &MainWindow::saveToFile); // Connecting save action tp saveToFileFunction()
     connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::openFromFile); // Connecting save action tp openFromFile()
     connect(ui->graphicsView->scene(), &QGraphicsScene::changed, this, &MainWindow::refreshLines);
+    connect(ui->actionTo_png, &QAction::triggered, this, &MainWindow::toPngFile);
     // Creating first node by function, not like before
     addNode();
     lastPath = QDir::rootPath();
@@ -165,6 +166,23 @@ void MainWindow::openFromFile()
 
         saveFile.close();
     }
+}
+
+void MainWindow::toPngFile()
+{
+    QString fileName = QFileDialog::getExistingDirectory(this,
+                                                        tr("Select Directory"),
+                                                        lastPath);
+    lastPath = fileName;
+
+    QGraphicsScene *scene = ui->graphicsView->scene();
+    fileName += "/scene.png"; // the output filename
+    QImage image(scene->sceneRect().size().toSize(), QImage::Format_ARGB32);
+    image.fill(Qt::white); // fill with transparent background
+    QPainter painter(&image);
+    scene->render(&painter);
+    QImageWriter writer(fileName, "png");
+    writer.write(image);
 }
 
 QList<SquareNode *> MainWindow::graphicsItemToSquareNode(QList<QGraphicsItem *> itemsList)

@@ -85,6 +85,7 @@ border-radius: 5px;
     <addaction name="actionConnect"/>
     <addaction name="actionSave"/>
     <addaction name="actionOpen"/>
+    <addaction name="actionTo_png"/>
    </widget>
    <addaction name="menuProject"/>
   </widget>
@@ -134,6 +135,14 @@ border-radius: 5px;
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionTo_png">
+   <property name="text">
+    <string>To png</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
    </property>
   </action>
  </widget>

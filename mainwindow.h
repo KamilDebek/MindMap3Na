@@ -10,6 +10,7 @@
 #include <QFileDialog>
 #include <QFile>
 #include <QtAlgorithms>
+#include <QImageWriter>
 
 #include "nodescolor.h"
 #include "squarenode.h"
@@ -40,6 +41,7 @@ private slots:
     void on_actionConnect_triggered();
     void saveToFile();
     void openFromFile();
+    void toPngFile();
 
 private:
     Ui::MainWindow *ui;
