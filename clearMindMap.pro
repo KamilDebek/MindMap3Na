@@ -10,7 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     connectline.cpp \
-    custom_view.cpp \
+    customview.cpp \
     main.cpp \
     mainwindow.cpp \
     nodescolor.cpp \
@@ -18,7 +18,7 @@ SOURCES += \
 
 HEADERS += \
     connectline.h \
-    custom_view.h \
+    customview.h \
     mainwindow.h \
     nodescolor.h \
     squarenode.h

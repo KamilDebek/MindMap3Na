@@ -22,15 +22,16 @@ SquareNode::SquareNode(qreal posX, qreal posY, QColor color)
     colorProxy->setZValue(2);
     colorProxy->setPos(125, 0);
 
-    QLineEdit *text = new QLineEdit;
-    text->setStyleSheet("background-color: rgba(255, 255, 255, 30); border: 1px solid black; border-radius: 5px;");
+    lineEdit = new QLineEdit;
+    lineEdit->setStyleSheet("background-color: rgba(255, 255, 255, 30); border: 1px solid black; border-radius: 5px;");
+    lineEdit->setAlignment(Qt::AlignCenter);
     QGraphicsProxyWidget *lineEditProxy = new QGraphicsProxyWidget;
-    lineEditProxy->setWidget(text);
+    lineEditProxy->setWidget(lineEdit);
     lineEditProxy->setParentItem(this);
     lineEditProxy->setPos(0, 30);
     lineEditProxy->setPreferredSize(180, 30);
     lineEditProxy->setContentsMargins(10,0,10,0);
-    text->setAlignment(Qt::AlignCenter);
+
 }
 
 SquareNode::~SquareNode() {}
