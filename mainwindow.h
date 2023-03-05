@@ -7,6 +7,8 @@
 #include <QList>
 #include <QGraphicsLineItem>
 #include <QLineF>
+#include <QFile>
+#include <QtAlgorithms>
 
 #include "nodescolor.h"
 #include "squarenode.h"
@@ -34,6 +36,8 @@ private slots:
     void on_actionAdd_triggered();
     void on_actionDelete_triggered();
     void on_actionConnect_triggered();
+    void saveToFile();
+    void openFromFile();
 
 private:
     Ui::MainWindow *ui;

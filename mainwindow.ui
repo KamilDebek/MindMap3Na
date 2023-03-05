@@ -83,6 +83,8 @@ border-radius: 5px;
     <addaction name="actionAdd"/>
     <addaction name="actionDelete"/>
     <addaction name="actionConnect"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionOpen"/>
    </widget>
    <addaction name="menuProject"/>
   </widget>
@@ -116,6 +118,22 @@ border-radius: 5px;
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
  </widget>

@@ -16,7 +16,7 @@
 class SquareNode : public QGraphicsRectItem
 {
 public:
-    SquareNode();
+    SquareNode(qreal posX = 0, qreal posY = 0, QColor color = Qt::blue);
     ~SquareNode();
 
     QList<QGraphicsLineItem*> lines;
