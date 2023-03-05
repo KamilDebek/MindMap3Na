@@ -46,6 +46,7 @@ private:
     QGraphicsScene *scene;
     QList <SquareNode *> squaresList;
     QList <ConnectLine *> linesList;
+    QString lastPath;
 
     QList<SquareNode*> graphicsItemToSquareNode(QList <QGraphicsItem *> itemsList);
     void refreshLines();

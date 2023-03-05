@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->graphicsView->scene(), &QGraphicsScene::changed, this, &MainWindow::refreshLines);
     // Creating first node by function, not like before
     addNode();
+    lastPath = QDir::rootPath();
 }
 
 MainWindow::~MainWindow()
@@ -92,7 +93,10 @@ void MainWindow::on_actionConnect_triggered()
 
 void MainWindow::saveToFile()
 {
-    QString fileName = QFileDialog::getExistingDirectory (this, tr("Open Directory"));
+    QString fileName = QFileDialog::getExistingDirectory(this,
+                                                        tr("Select Directory"),
+                                                        lastPath);
+    lastPath = fileName;
 
     QFile saveFile(fileName + "/jam.txt");
     if(saveFile.open(QIODevice::WriteOnly))
@@ -125,7 +129,11 @@ void MainWindow::openFromFile()
     qDeleteAll(linesList);
     linesList.clear();
 
-    QString fileName = "jam.txt";
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                                    tr("Open Image"),
+                                                    lastPath,
+                                                    tr("Save file (*.txt)"));
+    lastPath = fileName;
 
     QFile saveFile(fileName);
     if(saveFile.open(QIODevice::ReadOnly))
