@@ -5,6 +5,7 @@
 #include <QRectF>
 #include <QPen>
 #include <QBrush>
+#include <QTextEdit>
 #include <QGraphicsProxyWidget>
 #include <QGraphicsRectItem>
 #include <QList>
@@ -17,10 +18,10 @@ class SquareNode : public QGraphicsRectItem
 public:
     SquareNode();
     ~SquareNode();
+
     QList<QGraphicsLineItem*> lines;
     void addLine(QGraphicsLineItem* line);
 private:
-
 };
 
 #endif // SQUARENODE_H

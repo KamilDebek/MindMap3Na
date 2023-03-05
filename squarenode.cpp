@@ -1,9 +1,8 @@
 #include "squarenode.h"
 
 SquareNode::SquareNode()
-    : QGraphicsRectItem(0,0,200,100)
+    : QGraphicsRectItem(0,  0, 200, 100)
 {
-    QRectF rectOfProxy (0,0,40,20);
     QPen borderPen(Qt::black);
     borderPen.setWidth(2);
     QBrush blueBrush(Qt::blue);
@@ -11,7 +10,7 @@ SquareNode::SquareNode()
     this->setBrush(blueBrush);
     this->setFlag(QGraphicsRectItem::ItemIsMovable);
     this->setFlag(QGraphicsRectItem::ItemIsSelectable);
-    this->setZValue(10);
+    this->setZValue(1);
 
     nodesColor *nodeColor = new nodesColor(this);
     nodeColor->setStyleSheet("background-color: rgba(255, 255, 255, 30); font-size: 10px;");
@@ -19,8 +18,7 @@ SquareNode::SquareNode()
     QGraphicsProxyWidget *colorProxy = new QGraphicsProxyWidget;
     colorProxy->setWidget(nodeColor);
     colorProxy->setParentItem(this);
-    colorProxy->setZValue(25);
-    colorProxy->setGeometry(rectOfProxy);
+    colorProxy->setZValue(2);
     colorProxy->setPos(125,0);
 
     QLineEdit *text = new QLineEdit;
@@ -34,15 +32,7 @@ SquareNode::SquareNode()
     text->setAlignment(Qt::AlignCenter);
 }
 
-SquareNode::~SquareNode()
-{
-    for(int i = 0; i < lines.count(); i++)
-        if(lines[i] != nullptr)
-        {
-            //delete lines[i];
-            //lines[i] = nullptr;
-        }
-}
+SquareNode::~SquareNode(){}
 
 void SquareNode::addLine(QGraphicsLineItem *line)
 {

@@ -3,21 +3,10 @@
 
 #include <QMainWindow>
 #include <QGraphicsScene>
-#include <QtCore>
 #include <QDebug>
-#include <QtGui>
-#include <QKeyEvent>
-#include <QDebug>
-#include <QWheelEvent>
 #include <QList>
-#include <QMenu>
-#include <QAction>
-#include <QPushButton>
-#include <QGroupBox>
-#include <QLabel>
-#include <QLineEdit>
 #include <QGraphicsLineItem>
-#include <QFormLayout>
+#include <QLineF>
 
 #include "nodescolor.h"
 #include "squarenode.h"
@@ -34,10 +23,12 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
     void addNode();
     void deleteNode(QList <QGraphicsItem *> itemsList);
     void deleteLines(QList<QGraphicsLineItem*> lines);
     void connectLines();
+
 private slots:
 
     void on_actionAdd_triggered();
@@ -49,10 +40,6 @@ private:
     QGraphicsScene *scene;
     QList <SquareNode *> squaresList;
     QList <QGraphicsLineItem *> linesList;
-    //QGraphicsRectItem *rectItem; Moved to addNode() function because
-    // there is unnecessary
-    //QGraphicsLineItem *line; Moved to addNode() function because
-    // there is unnecessary
 
     QList<SquareNode*> graphicsItemToSquareNode(QList <QGraphicsItem *> itemsList);
 

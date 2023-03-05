@@ -20,7 +20,8 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #3A98B9;</string>
+   <string notr="true">background-color: #3A98B9;
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -37,9 +38,6 @@
      <number>3</number>
     </property>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout"/>
-    </item>
-    <item>
      <widget class="Custom_View" name="graphicsView">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -52,8 +50,9 @@
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: #EEEEEE;
-border: 3px solid #E8D5C4;
-border-radius: 15px;</string>
+border: 1px solid #E8D5C4;
+border-radius: 5px;
+</string>
       </property>
       <property name="dragMode">
        <enum>QGraphicsView::ScrollHandDrag</enum>
@@ -74,7 +73,7 @@ border-radius: 15px;</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>20</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuProject">
@@ -87,7 +86,6 @@ border-radius: 15px;</string>
    </widget>
    <addaction name="menuProject"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="actionAdd">
    <property name="text">
     <string>Add</string>

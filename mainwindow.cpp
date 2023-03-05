@@ -20,9 +20,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::addNode()
 {
-    SquareNode *xd = new SquareNode;
-    scene->addItem(xd);
-    squaresList.push_back(xd);
+    SquareNode *newItem = new SquareNode;
+    scene->addItem(newItem);
+    squaresList.push_back(newItem);
 }
 
 
@@ -31,22 +31,19 @@ void MainWindow::connectLines()
     if (scene->selectedItems().count() == 2)
     {
         QList <SquareNode *> itemsList = graphicsItemToSquareNode(scene->selectedItems());
+
+        QGraphicsLineItem *line = new QGraphicsLineItem(QLineF(itemsList[0]->pos(),itemsList[1]->pos()));
         QPen linePen(Qt::black);
         linePen.setWidth(3);
-
-        int startPosX = itemsList[0]->x();
-        int startPosY = itemsList[0]->y();
-        int endPosX = itemsList[1]->x();
-        int endPosY = itemsList[1]->y();
-
-        QGraphicsLineItem *line = new QGraphicsLineItem(startPosX,startPosY,endPosX,endPosY);
-        itemsList[0]->addLine(line);
-        itemsList[1]->addLine(line);
-        linesList.push_back(line);
         line->setPen(linePen);
-        scene->addItem(line);
+
+        itemsList[0]->addLine(line);
         itemsList[0]->setFlag(QGraphicsItem::ItemIsMovable, false);
+        itemsList[1]->addLine(line);
         itemsList[1]->setFlag(QGraphicsItem::ItemIsMovable, false);
+        linesList.push_back(line);
+
+        scene->addItem(line);
     }
 }
 
