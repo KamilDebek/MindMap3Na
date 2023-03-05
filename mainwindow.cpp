@@ -62,26 +62,15 @@ void MainWindow::deleteNode(QList <QGraphicsItem *> itemsList)
 
 void MainWindow::deleteLines(SquareNode * node)
 {
-    QList <ConnectLine *> tmpList = linesList;
     for(int i = 0; i < linesList.count(); i++)
     {
         if(linesList[i] != nullptr && (node == linesList[i]->firstNode || node == linesList[i]->secondNode))
         {
             delete linesList[i];
-            linesList[i] = nullptr;
             linesList.removeAt(i);
             i = -1;
         }
     }
-
-    //for(int i = 0; i < linesList.count(); i++)
-    //{
-    //    if(linesList[i] == nullptr)
-    //    {
-    //        linesList.removeAt(i);
-    //        i = 0;
-    //    }
-    //}
 }
 
 
@@ -112,9 +101,17 @@ void MainWindow::saveToFile()
 
         for(int i = 0; i < squaresList.count(); i++)
         {
+            outStream << "Node ";
             outStream << QString::number(squaresList[i]->x()) + ' ';
             outStream << QString::number(squaresList[i]->y()) + ' ';
             outStream << squaresList[i]->brush().color().name() + '\n';
+        }
+
+        for(int i = 0; i < linesList.count(); i++)
+        {
+            outStream << "Line ";
+            outStream << QString::number(squaresList.indexOf(linesList[i]->firstNode)) + ' ';
+            outStream << QString::number(squaresList.indexOf(linesList[i]->secondNode)) + '\n';
         }
 
         saveFile.close();
@@ -138,11 +135,24 @@ void MainWindow::openFromFile()
         while(!outStream.atEnd())
         {
             QStringList args = outStream.readLine().split(' ');
-            qDebug() << args;
-            qDebug() << args[0].toDouble() << " " << args[1].toDouble();
-            SquareNode *newNode = new SquareNode(args[0].toDouble(), args[1].toDouble(), args[2]);
-            scene->addItem(newNode);
-            squaresList.append(newNode);
+
+            if(args[0] == "Node")
+            {
+                SquareNode *newNode = new SquareNode(args[1].toDouble(), args[2].toDouble(), args[3]);
+                scene->addItem(newNode);
+                squaresList.append(newNode);
+            }
+            else if(args[0] == "Line")
+            {
+                ConnectLine *line = new ConnectLine(squaresList[args[1].toInt()], squaresList[args[2].toInt()]);
+
+                squaresList[args[1].toInt()]->setFlag(QGraphicsItem::ItemIsMovable, false);
+                squaresList[args[2].toInt()]->setFlag(QGraphicsItem::ItemIsMovable, false);
+                linesList.push_back(line);
+
+                scene->addItem(line);
+            }
+
         }
 
         saveFile.close();
