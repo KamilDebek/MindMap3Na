@@ -25,7 +25,7 @@ public:
 private slots:
     void newWindow();
     void openFromFile();
-    void saveAs();
+    bool saveAs();
     void saveToFile();    
     void exportImage(QString format);
 

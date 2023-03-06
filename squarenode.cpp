@@ -10,6 +10,7 @@ SquareNode::SquareNode(qreal posX, qreal posY, QColor color)
     this->setBrush(blueBrush);
     this->setFlag(QGraphicsRectItem::ItemIsMovable);
     this->setFlag(QGraphicsRectItem::ItemIsSelectable);
+    this->setFlag(QGraphicsRectItem::ItemIsFocusable);
     this->setZValue(1);
     this->setPos(posX, posY);
 
@@ -31,12 +32,16 @@ SquareNode::SquareNode(qreal posX, qreal posY, QColor color)
     lineEditProxy->setPos(0, 30);
     lineEditProxy->setPreferredSize(180, 30);
     lineEditProxy->setContentsMargins(10,0,10,0);
-
+//    lineEdit->hide();
 }
 
-SquareNode::~SquareNode() {}
-
-//void SquareNode::addLine(ConnectLine *line)
+//void SquareNode::focusInEvent(QFocusEvent *event)
 //{
-//    lines.push_back(line);
+//    lineEdit->show();
 //}
+
+//void SquareNode::focusOutEvent(QFocusEvent *event)
+//{
+//    lineEdit->hide();
+//}
+

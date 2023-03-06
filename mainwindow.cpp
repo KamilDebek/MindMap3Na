@@ -7,18 +7,18 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // File
+    // Zakładka File
     connect(ui->actionNew, &QAction::triggered, this, &MainWindow::newWindow);
     connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::openFromFile);
     connect(ui->actionSave_as, &QAction::triggered, this, &MainWindow::saveAs);
     connect(ui->actionSave, &QAction::triggered, this, &MainWindow::saveToFile);
     connect(ui->actionPNG, &QAction::triggered, this, [=](){ exportImage("png"); });
-    //connect(ui->actionJPG, &QAction::triggered, this, [=](){ exportImage("jpg"); });
-
+    // Zakładka Edit
     connect(ui->actionAdd, &QAction::triggered, ui->graphicsView, &CustomView::newNode); // Connecting save action tp openFromFile()
     connect(ui->actionDelete, &QAction::triggered, ui->graphicsView, &CustomView::deleteNode);
     connect(ui->actionConnect, &QAction::triggered, ui->graphicsView, &CustomView::connectLines);
 
+    // Refreshing lines
     connect(ui->graphicsView->scene, &QGraphicsScene::changed, ui->graphicsView, &CustomView::refreshLines);
 
     projectPath = "";
@@ -33,7 +33,7 @@ MainWindow::~MainWindow()
 void MainWindow::newWindow()
 {
     MainWindow *newWin = new MainWindow();
-    newWin->show();
+    newWin->showMaximized();
 }
 
 void MainWindow::openFromFile()
@@ -73,22 +73,26 @@ void MainWindow::openFromFile()
     }
 }
 
-void MainWindow::saveAs()
+bool MainWindow::saveAs()
 {
-    QString fileName = QFileDialog::getExistingDirectory(this,
+
+    QString fileName = QFileDialog::getSaveFileName(this,
                                                         tr("Select Directory"),
                                                         lastPath);
+    if (fileName == "") return 0;
     projectPath = fileName;
     lastPath = fileName;
 
     saveToFile();
+    return 1;
 }
 
 void MainWindow::saveToFile()
 {
-    if(projectPath == "") saveAs();
+    if(projectPath == "")
+        if (saveAs() == 0) return;
 
-    QFile saveFile(projectPath + "/jam.txt");
+    QFile saveFile(projectPath);
     if(saveFile.open(QIODevice::WriteOnly))
     {
         QTextStream outStream(&saveFile);
