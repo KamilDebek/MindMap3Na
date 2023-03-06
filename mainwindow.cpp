@@ -7,16 +7,21 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // File
+    connect(ui->actionNew, &QAction::triggered, this, &MainWindow::newWindow);
+    connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::openFromFile);
+    connect(ui->actionSave_as, &QAction::triggered, this, &MainWindow::saveAs);
+    connect(ui->actionSave, &QAction::triggered, this, &MainWindow::saveToFile);
+    connect(ui->actionPNG, &QAction::triggered, this, [=](){ exportImage("png"); });
+    //connect(ui->actionJPG, &QAction::triggered, this, [=](){ exportImage("jpg"); });
+
     connect(ui->actionAdd, &QAction::triggered, ui->graphicsView, &CustomView::newNode); // Connecting save action tp openFromFile()
     connect(ui->actionDelete, &QAction::triggered, ui->graphicsView, &CustomView::deleteNode);
     connect(ui->actionConnect, &QAction::triggered, ui->graphicsView, &CustomView::connectLines);
-    connect(ui->actionSave, &QAction::triggered, this, &MainWindow::saveToFile); // Connecting save action tp saveToFileFunction()
-    connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::openFromFile); // Connecting save action tp openFromFile()
-    connect(ui->actionTo_png, &QAction::triggered, this, &MainWindow::toPngFile);
 
     connect(ui->graphicsView->scene, &QGraphicsScene::changed, ui->graphicsView, &CustomView::refreshLines);
 
-
+    projectPath = "";
     lastPath = QDir::rootPath();
 }
 
@@ -25,39 +30,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-void MainWindow::saveToFile()
+void MainWindow::newWindow()
 {
-    QString fileName = QFileDialog::getExistingDirectory(this,
-                                                        tr("Select Directory"),
-                                                        lastPath);
-    lastPath = fileName;
-
-    QFile saveFile(fileName + "/jam.txt");
-    if(saveFile.open(QIODevice::WriteOnly))
-    {
-        QTextStream outStream(&saveFile);
-        QList <SquareNode *> squares = ui->graphicsView->squares();
-        QList <ConnectLine *> lines = ui->graphicsView->lines();
-
-        for(int i = 0; i < squares.count(); i++)
-        {
-            outStream << "Node ";
-            outStream << QString::number(squares[i]->x()) + ' ';
-            outStream << QString::number(squares[i]->y()) + ' ';
-            outStream << squares[i]->brush().color().name() + ' ';
-            outStream << squares[i]->lineEdit->text() + '\n';
-        }
-
-        for(int i = 0; i < lines.count(); i++)
-        {
-            outStream << "Line ";
-            outStream << QString::number(squares.indexOf(lines[i]->firstNode)) + ' ';
-            outStream << QString::number(squares.indexOf(lines[i]->secondNode)) + '\n';
-        }
-
-        saveFile.close();
-    }
+    MainWindow *newWin = new MainWindow();
+    newWin->show();
 }
 
 void MainWindow::openFromFile()
@@ -97,7 +73,50 @@ void MainWindow::openFromFile()
     }
 }
 
-void MainWindow::toPngFile()
+void MainWindow::saveAs()
+{
+    QString fileName = QFileDialog::getExistingDirectory(this,
+                                                        tr("Select Directory"),
+                                                        lastPath);
+    projectPath = fileName;
+    lastPath = fileName;
+
+    saveToFile();
+}
+
+void MainWindow::saveToFile()
+{
+    if(projectPath == "") saveAs();
+
+    QFile saveFile(projectPath + "/jam.txt");
+    if(saveFile.open(QIODevice::WriteOnly))
+    {
+        QTextStream outStream(&saveFile);
+        QList <SquareNode *> squares = ui->graphicsView->squares();
+        QList <ConnectLine *> lines = ui->graphicsView->lines();
+
+        for(int i = 0; i < squares.count(); i++)
+        {
+            outStream << "Node ";
+            outStream << QString::number(squares[i]->x()) + ' ';
+            outStream << QString::number(squares[i]->y()) + ' ';
+            outStream << squares[i]->brush().color().name() + ' ';
+            outStream << squares[i]->lineEdit->text() + '\n';
+        }
+
+        for(int i = 0; i < lines.count(); i++)
+        {
+            outStream << "Line ";
+            outStream << QString::number(squares.indexOf(lines[i]->firstNode)) + ' ';
+            outStream << QString::number(squares.indexOf(lines[i]->secondNode)) + '\n';
+        }
+
+        saveFile.close();
+    }
+}
+
+
+void MainWindow::exportImage(QString format)
 {
     QString fileName = QFileDialog::getExistingDirectory(this,
                                                         tr("Select Directory"),
@@ -110,7 +129,7 @@ void MainWindow::toPngFile()
     image.fill(Qt::white);
     QPainter painter(&image);
     scene->render(&painter);
-    QImageWriter writer(fileName, "png");
+    QImageWriter writer(fileName, format.toLatin1());
     writer.write(image);
 }
 

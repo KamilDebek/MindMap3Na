@@ -23,12 +23,15 @@ public:
     ~MainWindow();
 
 private slots:
-    void saveToFile();
+    void newWindow();
     void openFromFile();
-    void toPngFile();
+    void saveAs();
+    void saveToFile();    
+    void exportImage(QString format);
 
 private:
     Ui::MainWindow *ui;
+    QString projectPath;
     QString lastPath;
 };
 #endif // MAINWINDOW_H

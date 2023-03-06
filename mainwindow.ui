@@ -73,25 +73,103 @@
      <height>25</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuProject">
+   <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>Project</string>
+     <string>File</string>
     </property>
+    <widget class="QMenu" name="menuExport">
+     <property name="title">
+      <string>Export</string>
+     </property>
+     <addaction name="actionPNG"/>
+     <addaction name="actionJPG"/>
+    </widget>
+    <addaction name="actionNew"/>
+    <addaction name="separator"/>
+    <addaction name="actionOpen"/>
+    <addaction name="actionSave_as"/>
+    <addaction name="actionSave"/>
+    <addaction name="separator"/>
+    <addaction name="menuExport"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionUndo"/>
+    <addaction name="actionRedo"/>
+    <addaction name="separator"/>
     <addaction name="actionAdd"/>
     <addaction name="actionDelete"/>
     <addaction name="actionConnect"/>
-    <addaction name="actionSave"/>
-    <addaction name="actionOpen"/>
-    <addaction name="actionTo_png"/>
    </widget>
-   <addaction name="menuProject"/>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
   </widget>
-  <action name="actionAdd">
+  <action name="actionNew">
    <property name="text">
-    <string>Add</string>
+    <string>New</string>
    </property>
    <property name="shortcut">
-    <string>Shift+A</string>
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionSave_as">
+   <property name="text">
+    <string>Save as</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionPNG">
+   <property name="text">
+    <string>PNG</string>
+   </property>
+  </action>
+  <action name="actionJPG">
+   <property name="text">
+    <string>JPG</string>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="text">
+    <string>Undo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="actionRedo">
+   <property name="text">
+    <string>Redo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Y</string>
+   </property>
+  </action>
+  <action name="actionAdd">
+   <property name="text">
+    <string>Add node</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
    </property>
   </action>
   <action name="actionDelete">
@@ -107,31 +185,7 @@
     <string>Connect</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+C</string>
-   </property>
-  </action>
-  <action name="actionSave">
-   <property name="text">
-    <string>Save</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+S</string>
-   </property>
-  </action>
-  <action name="actionOpen">
-   <property name="text">
-    <string>Open</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+O</string>
-   </property>
-  </action>
-  <action name="actionTo_png">
-   <property name="text">
-    <string>To png</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+P</string>
+    <string>Shift+C</string>
    </property>
   </action>
  </widget>
