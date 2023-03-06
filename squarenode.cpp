@@ -32,16 +32,16 @@ SquareNode::SquareNode(qreal posX, qreal posY, QColor color)
     lineEditProxy->setPos(0, 30);
     lineEditProxy->setPreferredSize(180, 30);
     lineEditProxy->setContentsMargins(10,0,10,0);
-//    lineEdit->hide();
+    lineEdit->hide();
 }
 
-//void SquareNode::focusInEvent(QFocusEvent *event)
-//{
-//    lineEdit->show();
-//}
+void SquareNode::focusInEvent(QFocusEvent *event)
+{
+    lineEdit->show();
+}
 
-//void SquareNode::focusOutEvent(QFocusEvent *event)
-//{
-//    lineEdit->hide();
-//}
+void SquareNode::focusOutEvent(QFocusEvent *event)
+{
+    if (focusItem != lineEdit) lineEdit->hide();
+}
 
