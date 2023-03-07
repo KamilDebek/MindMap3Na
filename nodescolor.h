@@ -20,7 +20,7 @@ public slots:
 private:
     //QGraphicsScene *mainScene;
     QColor color;
-
+    QGraphicsRectItem *par;
     QGraphicsRectItem *node;
 
 };
