@@ -21,7 +21,7 @@ public:
     void zoomIn();
     void zoomOut();
 
-    void addNode(qreal x = 0, qreal y = 0, QColor color = Qt::blue, QString nText = "");
+    void addNode(qreal x = 0, qreal y = 0, QColor color = "#fbd157", QString nText = "");
     void newNode();
     void addLine(SquareNode* fNode, SquareNode* sNode);
     void connectLines();

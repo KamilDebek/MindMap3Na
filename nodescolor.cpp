@@ -7,6 +7,7 @@ nodesColor::nodesColor(QGraphicsRectItem *parent)
     //mainScene = scene;
     backgroundBrush.setColor(QColor(255,241,220));
     node = parent;
+    par = parent;
 }
 
 void nodesColor::changeNodeColor()
@@ -18,4 +19,6 @@ void nodesColor::changeNodeColor()
        backgroundBrush.setColor(newColor);
        node->setBrush(newColor);
     }
+
+    par->setFocus();
 }

@@ -16,9 +16,11 @@ class SquareNode : public QGraphicsRectItem
 public:
     SquareNode(qreal posX = 0, qreal posY = 0, QColor color = Qt::blue);
     QLineEdit *lineEdit;
+    nodesColor *nodeColor;
+    QGraphicsProxyWidget *colorProxy;
 protected:
-//    virtual void focusOutEvent(QFocusEvent *event) override;
-//    virtual void focusInEvent(QFocusEvent * event) override;
+    virtual void focusOutEvent(QFocusEvent *event) override;
+    virtual void focusInEvent(QFocusEvent * event) override;
 };
 
 #endif // SQUARENODE_H
